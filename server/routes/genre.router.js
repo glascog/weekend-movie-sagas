@@ -7,7 +7,8 @@ router.get('/', (req, res) => {
   console.log('Inside server side genres get')
   const queryText = 'SELECT * FROM genres';
   pool.query(queryText)
-    .then((result) => {res.send(result.rows);
+    .then((result) => {
+      res.send(result.rows);
     })
     .catch((error) => {
       console.log('Error completing genres query', error)
