@@ -1,18 +1,29 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import axios from 'axios';
 
-function MovieDetails() {
+function MovieDetails({movie}) {
     
     const dispatch = useDispatch();
     const {id} = useParams();
-    // const movies = useSelector(store => store.movies);
-    // const genres = useSelector(store => store.genres);
+    const [movieDetail, setMovieDetail] = useState([])
 
     useEffect(() => {
-        dispatch({})
-    })
+        getMovieDetail();
+    }, [])
    
+    const getMovieDetail = () => {
+        axios.get(`/detail/:id`)
+        .then(response => {
+            setMovieDetail(response.data);
+            console.log('Success getting movie detail', movieDetail)
+        })
+        .catch(error => {
+            console.log('Error getting movie detail:', error)
+        })
+    }
+
     return (
         <>
         <h1></h1>
