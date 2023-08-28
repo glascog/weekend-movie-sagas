@@ -4,7 +4,8 @@ const axios = require('axios');
 const pool = require('../modules/pool')
 
 
-router.get('/detail/:id', (req, res) => {
+router.get('/', (req, res) => {
+    console.log('inside detail get')
     
     const detailQueryParams = req.params.id;
     const getDetailQueryText = `SELECT movies.title, movies.poster, movies.description, genres.name
