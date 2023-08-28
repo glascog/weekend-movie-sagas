@@ -14,7 +14,7 @@ router.get('/detail/:id', (req, res) => {
     WHERE movies.id = $1;`
     console.log('req.params.id:', req.params.id);
 
-    pool.query(getDetailQueryText, detailQueryParams)
+    pool.query(getDetailQueryText, [detailQueryParams])
     .then((result) => {
         res.send(result.rows);
     })

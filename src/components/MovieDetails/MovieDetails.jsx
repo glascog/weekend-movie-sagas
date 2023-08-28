@@ -3,18 +3,23 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import axios from 'axios';
 
-function MovieDetails({movie}) {
-    
+function MovieDetails({}) {
+   
+
     const dispatch = useDispatch();
     const {id} = useParams();
     const [movieDetail, setMovieDetail] = useState([])
+
+    console.log('id is:', id)
+    console.log('movieDetail is:', movieDetail)
+    
 
     useEffect(() => {
         getMovieDetail();
     }, [])
    
     const getMovieDetail = () => {
-        axios.get(`/detail/:id`)
+        axios.get(`/detail/${id}`)
         .then(response => {
             setMovieDetail(response.data);
             console.log('Success getting movie detail', movieDetail)
@@ -26,7 +31,7 @@ function MovieDetails({movie}) {
 
     return (
         <>
-        <h1></h1>
+        <h1>{}</h1>
         
         </>
     )
