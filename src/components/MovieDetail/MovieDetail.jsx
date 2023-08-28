@@ -39,7 +39,8 @@ function MovieDetail() {
                 subheader = {genre.genres}
             >
             </CardHeader>
-                {movie.description}
+                
+                <Typography>{movie.description}</Typography>
 
                 <CardMedia  component="img" 
                             image={movie.poster} 
