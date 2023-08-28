@@ -15,22 +15,22 @@ import axios from 'axios';
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
     yield takeEvery('FETCH_GENRES', fetchGenres);
-    yield takeLatest('FETCH_DETAILS', fetchDetails);
+    // yield takeLatest('FETCH_DETAILS', fetchDetails);
 }
 
-function* fetchDetails(action) {
-    // get movie details from DB
-    try {
-        const movieId = action.payload
-        const details = yield axios.get(`/api/detail/${movieId}`);
-        console.log('get details:', details);
-        yield put({type: 'SET_DETAILS', payload: details});
-    } catch {
-        console.log('get details error')
-        console.log('action.payload:', action.payload)
-    }
+// function* fetchDetails(action) {
+//     // get movie details from DB
+//     try {
+//         const movieId = action.payload
+//         const details = yield axios.get(`/api/detail/${movieId}`);
+//         console.log('get details:', details);
+//         yield put({type: 'SET_DETAILS', payload: details});
+//     } catch {
+//         console.log('get details error')
+//         console.log('action.payload:', action.payload)
+//     }
     
-}
+// }
 
 function* fetchAllMovies() {
     // get all movies from the DB
@@ -59,15 +59,15 @@ function* fetchGenres() {
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
 
-// Reducer for storing movie detail returned from server
-const details = (state = [], action) => {
-    switch (action.type) {
-        case 'SET_DETAILS':
-            return action.payload;
-        default:
-            return state;
-    }
-}
+// // Reducer for storing movie detail returned from server
+// const details = (state = [], action) => {
+//     switch (action.type) {
+//         case 'SET_DETAILS':
+//             return action.payload;
+//         default:
+//             return state;
+//     }
+// }
 
 // Used to store movies returned from the server
 const movies = (state = [], action) => {
@@ -94,7 +94,7 @@ const storeInstance = createStore(
     combineReducers({
         movies,
         genres,
-        details
+        // details
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),

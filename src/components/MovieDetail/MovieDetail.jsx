@@ -3,36 +3,31 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import axios from 'axios';
 
-function MovieDetail(movie) {
+function MovieDetail() {
    
     const dispatch = useDispatch();
     const {id} = useParams();
-    const details = useSelector(store => store.details)
-    // const [movieDetail, setMovieDetail] = useState([])
+
+    const movie = useSelector(store => store.movies[id - 1]);
+    const genre = useSelector(store => store.genres[id - 1]);
 
     console.log('id is:', id)
-    // console.log('movieDetail is:', movieDetail)
     
 
     useEffect(() => {
-        dispatch({ type: 'FETCH_DETAILS' });
-        // getMovieDetail();
+        dispatch({ type: 'FETCH_MOVIES' });
+        dispatch({ type: 'FETCH_GENRES' });
+       
     }, [])
    
-    // const getMovieDetail = () => {
-    //     axios.get(`/detail/${id}`)
-    //     .then(response => {
-    //         // setMovieDetail(response.data);
-    //         // console.log('Success getting movie detail', movieDetail)
-    //     })
-    //     .catch(error => {
-    //         console.log('Error getting movie detail:', error)
-    //     })
-    // }
+   
 
     return (
         <>
         <h1>{movie.title}</h1>
+        <h2>{genre.genres}</h2>
+        <img src={movie.poster} alt={movie.title}/>
+
         
         </>
     )
