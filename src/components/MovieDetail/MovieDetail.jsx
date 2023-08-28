@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
-import axios from 'axios';
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import CardMedia from '@mui/material/CardMedia';
 
 function MovieDetail() {
    
@@ -13,20 +17,27 @@ function MovieDetail() {
 
     console.log('id is:', id)
     
-
     useEffect(() => {
         dispatch({ type: 'FETCH_MOVIES' });
         dispatch({ type: 'FETCH_GENRES' });
        
     }, [])
-   
-   
 
     return (
         <>
-        <h1>{movie.title}</h1>
-        <h2>{genre.genres}</h2>
-        <img src={movie.poster} alt={movie.title}/>
+        <Card sx={{ display: "inline-flex",
+                    flexDirection: "row"}}>
+            <CardHeader 
+                component = {Typography}
+                title = {movie.title}
+                subheader = {genre.genres}
+            >
+            </CardHeader>
+                <CardMedia component="img" image={movie.poster} alt={movie.title}>
+                    {/* <img src={movie.poster} alt={movie.title}/> */}
+                </CardMedia>
+                <Button>Back to Movies List</Button>
+        </Card>
 
         
         </>

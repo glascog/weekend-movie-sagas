@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './MovieList.css'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { Typography } from '@mui/material';
 
 function MovieList() {
 
@@ -21,7 +22,7 @@ function MovieList() {
                 {movies.map(movie => {
                     return (
                         <div key={movie.id} >
-                            <h3>{movie.title}</h3>
+                            <Typography variant="h6">{movie.title}</Typography>
                            <Link to={`/detail/${movie.id}`}>
                            <img src={movie.poster} alt={movie.title}/>
                            </Link> 
